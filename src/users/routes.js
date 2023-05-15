@@ -3,9 +3,12 @@ const {Router} = require("express");
 const userRouter = Router();
 // This renames Router to be userRouter
 
-const {registerUser} = require("./controllers");
+const {registerUser, login} = require("./controllers");
+const {hashThePassword, comparePasswords } = require ("../middleware/index")
 
-userRouter.post("/users/register", registerUser);
+userRouter.post("/users/register", hashThePassword, registerUser);
 // Creates the end point /users/register for a HTTP POST request and causes it to run registerUser
+
+userRouter.post("/users/login", comparePasswords, login)
 
 module.exports = userRouter;

@@ -15,4 +15,14 @@ async function registerUser(req,res) {
     }
 }
 
-module.exports= {registerUser};
+async function login (req,res){
+    try {
+        console.log({message: "User successfully logged in",
+                                user:req.body.username});
+    } catch (error) {
+        console.log(error);
+        res.status(501).send({message: error.message});
+    }
+}
+
+module.exports= {registerUser, login};
