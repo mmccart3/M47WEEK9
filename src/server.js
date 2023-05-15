@@ -5,10 +5,12 @@ require("dotenv").config();
 const app = express();
 // This allows us to rename express to app
 const port = process.env.PORT;
-
+const userRouter = require("./users/routes");
 
 app.use(express.json());
 // This tells the server to expect JSOn to be used in the request BODY rather than XML
+
+app.use(userRouter);
 
 app.get("/health", (req,res) => {
     res.status(200).send({message: "api is working"})
